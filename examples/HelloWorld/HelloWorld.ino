@@ -7,7 +7,7 @@
 LiquidCrystalSerial lcd(SH_CP, DS, ST_CP);
 
 void setup() {
-  lcd.begin(16, 2, SERIAL);
+  lcd.begin(16, 2);
   lcd.print("hello, world!");
 }
 

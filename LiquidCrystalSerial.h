@@ -42,28 +42,15 @@
 #define LCD_5x10DOTS 0x04
 #define LCD_5x8DOTS 0x00
 
-#define SERIAL 1
-#define NORMAL 0
-
 class LiquidCrystalSerial : public Print {
   public:
-    LiquidCrystalSerial(uint8_t rs, uint8_t enable,
-                        uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3,
-                        uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
-    LiquidCrystalSerial(uint8_t rs, uint8_t rw, uint8_t enable,
-                        uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3,
-                        uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
-    LiquidCrystalSerial(uint8_t rs, uint8_t rw, uint8_t enable,
-                        uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3);
-    LiquidCrystalSerial(uint8_t rs, uint8_t enable,
-                        uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3);
     LiquidCrystalSerial(uint8_t sh, uint8_t ds, uint8_t st);
 
     void init(uint8_t fourbitmode, uint8_t rs, uint8_t rw, uint8_t enable,
               uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3,
               uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
 
-    void begin(uint8_t cols, uint8_t rows, uint8_t mode = NORMAL, uint8_t charsize = LCD_5x8DOTS);
+    void begin(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
 
     void clear();
     void home();
@@ -89,15 +76,9 @@ class LiquidCrystalSerial : public Print {
 
     using Print::write;
   private:
-    void send(uint8_t, uint8_t);
-    void write4bits(uint8_t);
-    void write8bits(uint8_t);
-    void pulseEnable();
-
     uint8_t _sh_pin;
     uint8_t _ds_pin;
     uint8_t _st_pin;
-    uint8_t _operating_mode;
 
     void output_595(uint8_t, bool);
     void send_595(uint8_t, uint8_t);
